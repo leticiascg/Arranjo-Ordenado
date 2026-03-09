@@ -4,15 +4,47 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ArranjoOrdenadoTest {
 
     @Test
-    public void testInserirCrescente() {
+    public void testInserirCrescente_ordenacaoCorreta() {
         ArranjoOrdenado arr = new ArranjoOrdenado(10, true);
         arr.inserir(5);
         arr.inserir(2);
         arr.inserir(8);
+        arr.inserir(1);
 
-        assertEquals(2, arr.getElemento(0));
+        assertEquals(8, arr.getElemento(0));
         assertEquals(5, arr.getElemento(1));
-        assertEquals(8, arr.getElemento(2));
+        assertEquals(2, arr.getElemento(2));
+        assertEquals(1, arr.getElemento(3));
+    }
+
+    @Test
+    public void testInserirCrescente_elementoNoInicio() {
+        ArranjoOrdenado arr = new ArranjoOrdenado(5, true);
+        arr.inserir(10);
+        arr.inserir(1);
+
+        assertEquals(1, arr.getElemento(0));
+        assertEquals(10, arr.getElemento(1));
+    }
+
+    @Test
+    public void testInserirCrescente_elementoNoFim() {
+        ArranjoOrdenado arr = new ArranjoOrdenado(5, true);
+        arr.inserir(1);
+        arr.inserir(99);
+
+        assertEquals(99, arr.getElemento(1));
+    }
+
+    @Test
+    public void testInserirCrescente_elementoDuplicado() {
+        ArranjoOrdenado arr = new ArranjoOrdenado(5, true);
+        arr.inserir(3);
+        arr.inserir(3);
+
+        assertEquals(2, arr.getTamanho());
+        assertEquals(9, arr.getElemento(0));
+        assertEquals(3, arr.getElemento(1));
     }
 
     @Test
@@ -25,6 +57,7 @@ public class ArranjoOrdenadoTest {
         assertEquals(8, arr.getElemento(0));
         assertEquals(5, arr.getElemento(1));
         assertEquals(2, arr.getElemento(2));
+        assertEquals(1, arr.getElemento(3));
     }
 
     @Test
