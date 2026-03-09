@@ -4,6 +4,8 @@ public class ArranjoOrdenado {
     private boolean crescente;
 
     //Construtor
+    @param capacidade
+    @param crescente
     public ArranjoOrdenado(int capacidade, boolean crescente) {
         this.dados = new int[capacidade];
         this.tamanho = 0;
@@ -16,8 +18,16 @@ public class ArranjoOrdenado {
         return tamanho == dados.length; }
     public int getTamanho() {
         return tamanho; }
+    public int getCapacidade() {
+        return dados.length; }
+    public boolean isCrescente() {
+        return crescente; }
+
     public int getElemento(int i) {
-        return dados[i]; }
+        if (i < 0 || i >= tamanho)
+            throw new IndexOutOfBoundsException("Indice inválido: " + 1);
+        return dados[i];
+    }
 
     //Inserção
     public void inserir(int valor) {
@@ -25,6 +35,7 @@ public class ArranjoOrdenado {
             throw new RuntimeException("Arranjo cheio!");
 
         int i = tamanho - 1;
+
         if (crescente) {
             //Empurra os maiores para a direita
             while (i >= 0 && dados[i] > valor) {
@@ -67,6 +78,7 @@ public class ArranjoOrdenado {
 
         while (inicio <= fim) {
             int meio = (inicio + fim) / 2;
+
             if (dados[meio] == valor) return meio;
 
             if (crescente) {
